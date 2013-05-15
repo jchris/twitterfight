@@ -1,4 +1,4 @@
-var couchbaseHost = "http://ether.local:8091",
+var couchbaseHost = "http://mineral.local:8091",
   prompt = require('prompt'),
   fs = require('fs'),
   request = require('request'),
@@ -30,7 +30,7 @@ function tokenize (text) {
 }
 
 setup.getPorts(couchbaseHost, "default", function(err, ports) {
-  setup.withMC(ports.mc, "ether.local", function(err, client, done) {
+  setup.withMC(ports.mc, "mineral.local", function(err, client, done) {
     promptSetup(function(err, prompted) {
       console.log("\nconnecting to Twitter, searching for ", prompted.terms);
       var twitterURL = 'https://'+prompted.username+':'+prompted.password+'@stream.twitter.com/1.1/statuses/filter.json',
@@ -63,6 +63,7 @@ setup.getPorts(couchbaseHost, "default", function(err, ports) {
           var tokens = tokenize(data.text),
             done=false;
           process.stdout.write('.');
+
 
           async.forEachSeries(tokens, function(t, cbnext) {
             var token_key = "t:"+t,
