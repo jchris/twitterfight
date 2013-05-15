@@ -1,0 +1,22 @@
+body {
+	font-family: sans-serif;
+	background:#000;
+	color:#fff;
+}
+
+ul {
+	list-style-type: none;
+}
+
+img.logo {
+	display: block;
+	margin: 0 auto;
+}
+
+li.player {
+	display:block;
+	width:250px;
+	float:left;
+	margin:4px;
+	padding:4px;
+}

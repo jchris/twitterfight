@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Twitterfight!</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+    <img src="logo.png" class="logo" alt="Twitterfight!">
+<ul id="players">
+
+</ul>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.mustache.js"></script>
+<script type="text/javascript">
+$(function() {
+    function drawUsers() {
+        $.ajax("/setup", {
+            dataType : "json",
+            success : function(users) {
+                $('#players').empty();
+                var template = $("#userInfo").text();
+                users.forEach(function(user) {
+                    var html = $.mustache(template, user)
+                    $('#players').append(html);
+                })
+                setTimeout(drawUsers, 1000);
+            }
+        })
+    }
+    drawUsers();
+})
+</script>
+<script id="userInfo" type="template/mustache">
+<li class="player">
+    <h3>@{{name}}</h3>
+    <h4>{{total}}</h4>
+    <p class="terms">
+        {{#words}}
+            <span class="term" style="font-size:{{0}}px">{{1}}</span>
+        {{/words}}
+    </ul>
+</li>
+</script>
+</body>
+</html>
