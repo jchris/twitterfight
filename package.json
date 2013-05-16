@@ -14,9 +14,7 @@
     "url": "http://github.com/jchris/twitterfight/issues"
   },
   "directories": {
-    "lib": "./lib",
-    "assets": "./assets",
-    "app": "./app"
+    "lib": "./lib"
   },
   "engines": {
     "node": ">=0.8.0"
@@ -36,10 +34,5 @@
     "async": "0.1.x",
     "colors": "0.6.x"
   },
-  "readme": "Twitterfight\n\nA game about who can slurp the most tweets.",
-  "_id": "twitterfight@0.0.4",
-  "dist": {
-    "shasum": "5ecf8be21c52600d5efeaba7e2b2bc516d0e50b0"
-  },
-  "_from": "twitterfight"
+  "readme": "Twitterfight\n\nA game about who can slurp the most tweets."
 }

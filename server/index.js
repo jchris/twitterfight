@@ -4,8 +4,6 @@ var static = require('node-static'),
   async = require('async'),
   couchbase = require("couchbase");
 
-var couchViews = "http://localhost:8092/default/_design/twitterfight/_view/";
-
 var assets = new(static.Server)('assets');
 
 http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-a-array
@@ -102,6 +100,7 @@ couchbase.connect({}, function(err, bucket) {
         assets.serve(req, res);
       }
     }).listen(8080);
+    console.log("connect at http://localhost:8080");
   });
 
   function readJSONBody(req, cb) {
@@ -128,7 +127,7 @@ couchbase.connect({}, function(err, bucket) {
       // console.log("tokens", tokens);
       for (var i = tokens.length - 1; i >= 0; i--) {
         var t = tokens[i];
-        if (t.length < 4) continue;
+        if (!t || t.length < 6) continue;
         keys.push("t:"+encodeURIComponent(t))
         keys.push("u:"+encodeURIComponent(tweet.fight.user)+":"+encodeURIComponent(t))
       };
@@ -181,7 +180,7 @@ couchbase.connect({}, function(err, bucket) {
 
   function renderLeaderboard (finalCallback) {
     bucket.get("cached-leaderboard", function(err, cached) {
-      console.log("cached-leaderboard", err, cached)
+      // console.log("cached-leaderboard", err, cached)
       if (cached && cached.users) {
         finalCallback(cached.users);
       } else {
@@ -205,16 +204,16 @@ couchbase.connect({}, function(err, bucket) {
                   if (rows && rows[0]) {
                     var total = rows[0].value;
                     var userInfo = {name : u, words : words, total: total};
-                    console.log("push user info", userInfo)
+                    // console.log("push user info", userInfo)
                     userInfos.push(userInfo);
                   }
                   cb()
                 });
               });
           }, function() {
-            console.log("all users done", userInfos);
+            // console.log("all users done", userInfos);
             userInfos = userInfos.sort(function(b,a) {return a.total - b.total});
-            console.log("new-leaderboard", {users:userInfos})
+            // console.log("new-leaderboard", {users:userInfos})
             bucket.set("cached-leaderboard",
               JSON.stringify({users:userInfos}), {expiry:2},
               function() {
