@@ -1,10 +1,9 @@
 var prompt = require('prompt'),
   fs = require('fs'),
   request = require('request'),
-  twitterstream = require("../lib/twitterstream"),
+  twitterstream = require("lib/twitterstream"),
   server = "http://mineral.local:8080/",
   colors = require("colors");
-
 
 function promptSetup (cb) {
   console.log("")
@@ -39,22 +38,6 @@ function registerUser(name) {
   });
 };
 
-function withPrompted(err, p) {
-  var first = true;
-  twitterstream.search(p.username, p.password, p.terms, function(err, tweet) {
-    if (err) {
-      console.error("Twitter connection error", err)
-      process.exit(1)
-    }
-    if (first) {
-      // register our user with the server
-      first = false;
-      registerUser(p.username);
-    }
-    handleTweet(tweet, p.username);
-  });
-}
-
 function handleTweet(tweet, name) {
   console.log("")
   console.log(tweet.text)
@@ -69,6 +52,22 @@ function handleTweet(tweet, name) {
     } else {
       console.log(("error posting to "+server).red, err)
     }
+  });
+}
+
+function withPrompted(err, p) {
+  var first = true;
+  twitterstream.search(p.username, p.password, p.terms, function(err, tweet) {
+    if (err) {
+      console.error("Twitter connection error", err)
+      process.exit(1)
+    }
+    if (first) {
+      // register our user with the server
+      first = false;
+      registerUser(p.username);
+    }
+    handleTweet(tweet, p.username);
   });
 }
 

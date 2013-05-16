@@ -2,7 +2,6 @@ var static = require('node-static'),
   http = require('http'),
   url = require('url'),
   async = require('async'),
-  // coax = require('coax'),
   couchbase = require("couchbase");
 
 var couchViews = "http://localhost:8092/default/_design/twitterfight/_view/";

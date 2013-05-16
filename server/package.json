@@ -1,6 +1,6 @@
 {
-  "name": "twitterfight",
-  "description": "A game showing off Couchbase incremental analytics",
+  "name": "twitterfight-server",
+  "description": "Server side for the game showing off Couchbase incremental analytics",
   "homepage": "http://github.com/jchris/twitterfight",
   "version": "0.1.0",
   "author": {
@@ -16,7 +16,6 @@
   "directories": {
     "lib": "./lib",
     "assets": "./assets",
-    "app": "./app"
   },
   "engines": {
     "node": ">=0.8.0"
@@ -28,18 +27,12 @@
     }
   ],
   "scripts": {
-    "start": "node client.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "request": "2.x",
-    "prompt": "0.2.x",
     "async": "0.1.x",
-    "colors": "0.6.x"
+    "couchbase": "0.0.x",
+    "node-static": "0.6.x"
   },
-  "readme": "Twitterfight\n\nA game about who can slurp the most tweets.",
-  "_id": "twitterfight@0.0.4",
-  "dist": {
-    "shasum": "5ecf8be21c52600d5efeaba7e2b2bc516d0e50b0"
-  },
-  "_from": "twitterfight"
+  "readme": "Twitterfight\n\nA game about who can slurp the most tweets."
 }
