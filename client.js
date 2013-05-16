@@ -1,7 +1,7 @@
 var prompt = require('prompt'),
   fs = require('fs'),
   request = require('request'),
-  twitterstream = require("lib/twitterstream"),
+  twitterstream = require("./lib/twitterstream"),
   server = "http://mineral.local:8080/",
   colors = require("colors");
 
@@ -21,7 +21,7 @@ function promptSetup (cb) {
     "name" : "terms",
     "message" : "Pick your buzzwords! (comma seperated)",
     "empty" : false,
-    'default' : "javascript,lxjs,nosql,couchbase"
+    'default' : "javascript,nodepdx,nosql,couchbase"
   }], cb);
 }
 

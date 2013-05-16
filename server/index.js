@@ -142,7 +142,6 @@ couchbase.connect({}, function(err, bucket) {
   }
 
   function acceptTweet(req, res) {
-    console.log("acceptTweet")
     // read request body, parse as JSON
     readJSONBody(req, function(err, json) {
       if (err) {

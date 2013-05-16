@@ -14,8 +14,7 @@
     "url": "http://github.com/jchris/twitterfight/issues"
   },
   "directories": {
-    "lib": "./lib",
-    "assets": "./assets",
+    "assets": "./assets"
   },
   "engines": {
     "node": ">=0.8.0"
