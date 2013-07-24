@@ -6,7 +6,7 @@ var static = require('node-static'),
 
 var assets = new(static.Server)('assets');
 
-http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-a-array
+// http://stackoverflow.com/questions/11246758/how-to-get-unique-values-in-a-array
 Array.prototype.contains = function(v) {
     for(var i = 0; i < this.length; i++) {
         if(this[i] === v) return true;
